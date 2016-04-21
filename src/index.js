@@ -4,11 +4,10 @@ import createService from 'service-core'
 import ks from 'kismatch'
 import fs from 'fs'
 
-const loadAdapter = id => {
-  return fs.readFileSync(`${__dirname}/../adapters/${id}.kal`, 'utf-8')
-}
+const pg = require('pg-promise')()
+let db;
 
-const service = createService([
+const endpoints = [
 
   {
 
@@ -19,31 +18,26 @@ const service = createService([
       data: ks.types.object
     },
     
-    action({ from, to, data }) {
+    action: async ({ from, to, data }, { dbUrl }) => {
 
-      try {
-      const fromAdapter = loadAdapter(from)
-      const toAdapter = loadAdapter(to)
-      
-      const normalized = transform(fromAdapter, data, {
-        dir: 'output'
-      })
+      const [ fromAdapter, toAdapter ] = await Promise.all([
+        db.query(`SELECT text FROM adapters WHERE id='${from}'`),
+        db.query(`SELECT text FROM adapters WHERE id='${to}'`)
+      ])
 
-      //console.log('normalized', normalized)
+      const normalized = transform(fromAdapter, data, { dir: 'output' })
+      console.log('normalized', normalized)
 
-      const transformed = transform(toAdapter, normalized, {
-        dir: 'input'
-      })
-
-      //console.log('transformed', transformed)
+      const transformed = transform(toAdapter, normalized, { dir: 'input' })
+      console.log('transformed', transformed)
 
       return transformed
-      } catch(e) {
-        console.log('e', e)
-      }
     }
   }
-])
+]
 
-export default service
+export default config => {
+  db = pg(config.dbUrl)
+  return createService(endpoints, config)
+}
 

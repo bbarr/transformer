@@ -10,8 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "service-core": "git@github.com:bbarr/service-core.git",
-    "kourier-lang": "git@github.com:urbildpunkt/kourier-lang.git"
+    "kourier-lang": "git@github.com:urbildpunkt/kourier-lang.git",
+    "pg-promise": "^3.9.0",
+    "service-core": "git@github.com:bbarr/service-core.git"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
