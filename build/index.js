@@ -24,7 +24,7 @@ var loadAdapter = function loadAdapter(id) {
   return _fs2.default.readFileSync(__dirname + '/../adapters/' + id + '.kal', 'utf-8');
 };
 
-var service = (0, _serviceCore2.default)([{
+var endpoints = [{
 
   pattern: {
     cmd: 'transform',
@@ -64,6 +64,8 @@ var service = (0, _serviceCore2.default)([{
       console.log('e', e);
     }
   }
-}]);
+}];
 
-exports.default = service;
+exports.default = function (config) {
+  return (0, _serviceCore2.default)(endpoints, config);
+};

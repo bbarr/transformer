@@ -8,7 +8,7 @@ const loadAdapter = id => {
   return fs.readFileSync(`${__dirname}/../adapters/${id}.kal`, 'utf-8')
 }
 
-const service = createService([
+const endpoints = [
 
   {
 
@@ -45,7 +45,9 @@ const service = createService([
       }
     }
   }
-])
+]
 
-export default service
+export default (config) => {
+  return createService(endpoints, config)
+}
 
