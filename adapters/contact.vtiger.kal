@@ -1,7 +1,2 @@
 
-adapter contact/vtiger <-> contact/standard
-  
-  'First Name' <-> 'given_name'
-  'Last Name' <-> 'family_name'
-
-  'phones' <- 'phone_numbers'
+adapter contact/vtiger <-> contact/standard \n  'First Name' <-> 'given_name' \n 'Last Name' <-> 'family_name' \n 'phones' <- 'phone_numbers'
