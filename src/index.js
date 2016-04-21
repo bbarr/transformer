@@ -50,4 +50,3 @@ const endpoints = [
 export default (config) => {
   return createService(endpoints, config)
 }
-
