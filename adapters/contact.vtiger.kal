@@ -1,0 +1,7 @@
+
+adapter contact/vtiger <-> contact/standard
+  
+  'First Name' <-> 'given_name'
+  'Last Name' <-> 'family_name'
+
+  'phones' <- 'phone_numbers'

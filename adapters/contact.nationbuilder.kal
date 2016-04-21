@@ -1,0 +1,13 @@
+
+adapter contact/nationbuilder <-> contact/standard
+  
+  'first_name' <-> 'given_name'
+  'last_name' <-> 'family_name'
+
+  'do_not_call' | format ([{
+      "primary": true,
+      "number_type": "Home",
+      "do_not_call": $1
+    }]) -> 'phone_numbers'
+
+  'phone_number' | stripAll (\D) -> 'phone_numbers.0.phone_number'
