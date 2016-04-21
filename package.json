@@ -11,7 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "kourier-lang": "git@github.com:urbildpunkt/kourier-lang.git",
-    "pg-promise": "^3.9.0",
     "service-core": "git@github.com:bbarr/service-core.git"
   },
   "devDependencies": {
